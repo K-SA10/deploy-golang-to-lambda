@@ -1,4 +1,4 @@
-name: Deploy to Amazon Lambda
+name: Deploy to AWS Lambda
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
       uses: actions/setup-go@v2
       
     - name: Checkout
-      uses: action/checkout@v2
+      uses: actions/checkout@v2
       
     - name: Get Dependencies
       run: go get -v
