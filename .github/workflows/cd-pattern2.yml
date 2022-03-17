@@ -11,8 +11,8 @@ jobs:
       id-token: write
       contents: read
     steps:
-      -name: Configure AWS Credentials
-       run: |
+      - name: Configure AWS Credentials
+        run: |
          export AWS_ROLE_ARN=${{ secrets.AWS_ROLE_ARN }}
          export AWS_WEB_IDENTITY_TOKEN_FILE=/tmp/awscreds
          export AWS_DEFAULT_REGION=ap-northeast-1
@@ -38,6 +38,6 @@ jobs:
         run: zip function.zip main
       
       - name: Deploy AWS Lambda
-        uses: appleboy/lambda-action@master
-        run: pip3 install awscli
-        run: aws lambda update-function-code --function-name golang-api --zip-file fileb://function.zip --publish
+        run: |
+          pip3 install awscli
+          aws lambda update-function-code --function-name golang-api --zip-file fileb://function.zip --publish
